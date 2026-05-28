@@ -47,8 +47,14 @@ export async function POST(req: NextRequest, { params }: { params: { module: str
     });
   }
 
+  // Append common WinGet install locations so tools like trivy are findable
+  // even when the Next.js server started before they were added to PATH.
+  const wingetLinks = `${process.env.LOCALAPPDATA}\\Microsoft\\WinGet\\Links`;
+  const augmentedPath = [process.env.PATH, wingetLinks].filter(Boolean).join(";");
+
   const env: NodeJS.ProcessEnv = {
     ...process.env,
+    PATH: augmentedPath,
     TARGET_URL: (config.targetUrl as string) ?? "",
     AZURE_TENANT_ID: ((config.azure as Record<string, string>)?.tenantId) ?? "",
     AZURE_CLIENT_ID: ((config.azure as Record<string, string>)?.clientId) ?? "",
