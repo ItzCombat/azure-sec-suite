@@ -60,7 +60,7 @@ export async function POST(req: NextRequest, { params }: { params: { module: str
 
   const stream = new ReadableStream({
     start(controller) {
-      const proc = spawn(command.cmd, command.args, { env, cwd: ROOT });
+      const proc = spawn(command.cmd, command.args, { env, cwd: ROOT, shell: true });
 
       proc.stdout.on("data", (data: Buffer) => {
         controller.enqueue(sse(data.toString()));
