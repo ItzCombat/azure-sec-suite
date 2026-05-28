@@ -1,5 +1,5 @@
 import axios from "axios";
-import { config } from "../config";
+import { config } from "../config.ts";
 
 const ZAP = `http://localhost:${config.zap.port}`;
 const KEY = config.zap.apiKey;

@@ -1,6 +1,6 @@
 import { ConfidentialClientApplication, LogLevel } from "@azure/msal-node";
 import axios from "axios";
-import { config } from "../config";
+import { config } from "../config.ts";
 
 async function acquireToken(): Promise<string> {
   const { tenantId, clientId, clientSecret, scope } = config.azure;
