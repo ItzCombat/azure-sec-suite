@@ -1,7 +1,9 @@
 import { execSync } from "child_process";
 import * as fs from "fs";
 import * as path from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPORTS = path.resolve(__dirname, "../../reports");
 
 function run(label: string, cmd: string, outFile?: string): void {
