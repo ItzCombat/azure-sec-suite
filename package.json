@@ -1,0 +1,23 @@
+{
+  "name": "azure-sec-suite",
+  "version": "0.1.0",
+  "description": "Security testing suite for Azure-hosted applications",
+  "scripts": {
+    "load:smoke":  "k6 run src/load/smoke.js",
+    "load:stress": "k6 run src/load/stress.js",
+    "fuzz":        "ts-node src/fuzz/run-zap.ts",
+    "sast":        "ts-node src/sast/scan.ts",
+    "auth":        "ts-node src/auth/test-auth.ts",
+    "audit":       "npm audit --json > reports/npm-audit.json"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "@azure/msal-node": "^2.9.0",
+    "axios": "^1.7.0",
+    "dotenv": "^16.4.0"
+  }
+}
